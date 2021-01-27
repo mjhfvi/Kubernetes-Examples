@@ -1,0 +1,13 @@
+# source: https://docs.projectcalico.org/getting-started/kubernetes/hardway/install-cni-plugin
+
+curl -L -o /opt/cni/bin/calico https://github.com/projectcalico/cni-plugin/releases/download/v3.16.6/calico-amd64
+chmod 755 /opt/cni/bin/calico
+curl -L -o /opt/cni/bin/calico-ipam https://github.com/projectcalico/cni-plugin/releases/download/v3.16.6/calico-ipam-amd64
+chmod 755 /opt/cni/bin/calico-ipam
+
+
+mkdir -p /etc/cni/net.d/
+
+
+cp cni.kubeconfig /etc/cni/net.d/calico-kubeconfig
+chmod 600 /etc/cni/net.d/calico-kubeconfig
