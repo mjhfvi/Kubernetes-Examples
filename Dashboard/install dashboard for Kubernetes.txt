@@ -1,0 +1,22 @@
+# source: https://computingforgeeks.com/how-to-install-kubernetes-dashboard-with-nodeport/
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+
+wget https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+mv recommended.yaml kubernetes-dashboard-deployment.yml
+
+# add NodePort to the deployment file,  type: NodePort
+#   selector:
+#  k8s-app: kubernetes-dashboard
+#  type: NodePort
+vi kubernetes-dashboard-deployment.yml
+
+kubectl apply -f kubernetes-dashboard-deployment.yml
+
+# check the setup 
+kubectl get pods -n kubernetes-dashboard
+kubectl get service -n kubernetes-dashboard      
+
+# access it 
+https://192.168.50.71:port

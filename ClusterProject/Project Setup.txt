@@ -1,0 +1,7 @@
+# Project Setup
+
+docker pull nginx
+
+setup the cluster and master
+
+copy yml files to master

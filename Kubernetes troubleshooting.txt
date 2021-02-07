@@ -4,7 +4,9 @@ kubectl get nodes
 
 #make sure swap is off
 sudo swapon -s
-sudo swapoff /swap.img 
+sudo sed -i '/ swap / s/^/#/' /etc/fstab
+init 6
+# reboot the PC
 
 # make sure the kubectl is running
 sudo systemctl status kubelet
@@ -16,3 +18,6 @@ kubectl describe nodes
 kubectl describe node ops02
 
 # remove node: https://stackoverflow.com/questions/35757620/how-to-gracefully-remove-a-node-from-kubernetes
+
+# check why pod in pending
+kubectl describe pods
