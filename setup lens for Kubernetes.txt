@@ -1,0 +1,5 @@
+# get kubeconfig information 
+cat /etc/kubernetes/kubelet.conf
+
+# copy pam file to local folder
+/var/lib/kubelet/pki/	C:\Users\owner\AppData\Roaming\Lens\kubeconfigs\var\lib\kubelet\pki

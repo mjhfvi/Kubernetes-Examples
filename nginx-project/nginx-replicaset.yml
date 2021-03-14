@@ -1,22 +1,30 @@
+---
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx-replicaset
-  labels:
-    app: nginx-replicaset
-    tier: frontend
 spec:
-  # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      tier: frontend
+      app: nginx
   template:
     metadata:
       labels:
-        tier: frontend
+        app: nginx
+        version: "2"
     spec:
       containers:
-      - name: nginx-container-replicaset
-        image: nginx
-
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+              name: "nginx-server"
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html"
+              name: nginx-pv
+          name: nginx
+      volumes:
+      - name: nginx-pv
+        persistentVolumeClaim:
+          claimName: nginx-persistentvolumeclaim-nfs
